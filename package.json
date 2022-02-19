@@ -1,0 +1,9 @@
+{
+  "name": "types-ddd",
+  "version": "0.0.1",
+  "main": "bin/index.sh",
+  "license": "MIT",
+  "bin": {
+    "types-ddd": "./bin/index.sh"
+  }
+}
