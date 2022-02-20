@@ -26,20 +26,26 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 	$ types-ddd --help
 ```
 
+OR
+
+```sh
+	$ types-ddd -h
+```
+
 #### Generate
 
 ```sh
-	$ types-ddd generate --resource value-object --type string --path ./src/domain
+	$ types-ddd -generate value-object -name example -type string -path src/domain
 ```
 
 OR
 
 ```sh
-	$ types-ddd g --r value-object --t string --p ./src/domain
+	$ types-ddd -g value-object -n example -t string -p src/domain
 ```
 
 OR 
 
 ```sh
-	$ types-ddd g --r value-object
+	$ types-ddd -g value-object -n example
 ```
