@@ -17,7 +17,7 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 #### Installation 
 
 ```sh
-	$ npm i types-ddd -g
+	$ npm i types-ddd-cli -g
 ```
 
 #### Help
