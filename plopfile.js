@@ -1,120 +1,93 @@
+const Handlebars = require('handlebars');
+
+Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 module.exports = function (plop) {
 	plop.setGenerator('resource', {
 		prompts: [
-			{
-				type: 'input',
-				name: 'name',
-				message: 'What is the resource name?'
-			},
-			{
-				type: 'list',
-				name: 'option',
-				message: 'Select your option?',
-				choices: [
-					{
-						type: 'confirm',
-						name: 'valueObject',
-						message: 'Do you want valueObject?'
-					},
-					{
-						type: 'confirm',
-						name: 'aggregate',
-						message: 'Do you want Aggregate?'
-					},
-					{
-						type: 'confirm',
-						name: 'entity',
-						message: 'Do you want Entity?'
-					},
-					{
-						type: 'confirm',
-						name: 'useCase',
-						message: 'Do you want Use Case?'
-					},
-					{
-						type: 'confirm',
-						name: 'mapper',
-						message: 'Do you want Mapper?'
-					}
-				]
-			}
+			{ type: "input", name: "name" },
+			{ type: "input", name: "option" },
+			{ type: "input", name: "type" },
+			{ type: "input", name: "destination" },
+			{ type: "input", name: "origin" },
 		],
 		actions: function (data) {
 			const actions = [];
-			const CMD_PATH = process.cwd();
-			const { option } = data;
-			if (option === 'valueObject') {
-				/** @todo ask user input type to value object */
-				data.type = 'string';
+
+			console.table(data);
+
+			if (data.option === 'value-object') {
 				actions.push(
 					{
 						type: 'add',
-						path: CMD_PATH + '/modules/{{dashCase name}}.value-object.ts',
-						templateFile: CMD_PATH + '/templates/value-object/value-object.hbs'
+						path: data.destination + 'modules/{{dashCase name}}.value-object.ts',
+						templateFile: data.origin + 'templates/value-object/value-object.hbs'
 					},
 					{
 						type: 'add',
-						path: CMD_PATH + '/modules/tests/{{dashCase name}}.value-object.spec.ts',
-						templateFile: CMD_PATH + '/templates/value-object/value-object.spec.hbs'
+						path: data.destination + 'modules/tests/{{dashCase name}}.value-object.spec.ts',
+						templateFile: data.origin + 'templates/value-object/value-object.spec.hbs'
 					}
 				);
-			} else if (option === 'aggregate') {
-				actions.push(
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/aggregates/{{dashCase name}}.aggregate.ts',
-						templateFile: './templates/aggregate/aggregate.hbs'
-					},
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/aggregates/tests/{{dashCase name}}.aggregate.spec.ts',
-						templateFile: './templates/aggregate/tests/aggregate.spec.hbs'
-					}
-				);
-			} else if (option === 'entity') {
-				actions.push(
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/entities/{{dashCase name}}.entity.ts',
-						templateFile: './templates/entity/entity.hbs'
-					},
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/entities/tests/{{dashCase name}}.entity.spec.ts',
-						templateFile: './templates/entities/entity.spec.hbs'
-					}
-				);
-			} else if (option === 'useCase') {
-				actions.push(
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/application/use-cases/create-{{dashCase name}}.dto.ts',
-						templateFile: './templates/application/use-cases/dto.hbs'
-					},
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/application/use-cases/create-{{dashCase name}}.use-case.ts',
-						templateFile: './templates/application/use-case/use-case.hbs'
-					},
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/application/use-cases/tests/create-{{dashCase name}}.use-case.spec.ts',
-						templateFile: './templates/application/use-case/use-case.spec.hbs'
-					}
-				);
-			} else if (option === 'mapper') {
-				actions.push(
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/infra/mappers/tests/{{dashCase name}}.mapper.spec.ts',
-						templateFile: './templates/infra/mapper/mapper.spec.hbs'
-					},
-					{
-						type: 'add',
-						path: './modules/{{dashCase name}}/infra/mappers/{{dashCase name}}.mapper.ts',
-						templateFile: './templates/infra/mapper/mapper.hbs'
-					}
-				);
+			} else if (data.option === 'aggregate') {
+				// actions.push(
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/aggregates/{{dashCase name}}.aggregate.ts',
+				// 		templateFile: './templates/aggregate/aggregate.hbs'
+				// 	},
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/aggregates/tests/{{dashCase name}}.aggregate.spec.ts',
+				// 		templateFile: './templates/aggregate/tests/aggregate.spec.hbs'
+				// 	}
+				// );
+			} else if (data.option === 'entity') {
+				// actions.push(
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/entities/{{dashCase name}}.entity.ts',
+				// 		templateFile: './templates/entity/entity.hbs'
+				// 	},
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/entities/tests/{{dashCase name}}.entity.spec.ts',
+				// 		templateFile: './templates/entities/entity.spec.hbs'
+				// 	}
+				// );
+			} else if (data.option === 'use-case') {
+				// actions.push(
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/application/use-cases/create-{{dashCase name}}.dto.ts',
+				// 		templateFile: './templates/application/use-cases/dto.hbs'
+				// 	},
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/application/use-cases/create-{{dashCase name}}.use-case.ts',
+				// 		templateFile: './templates/application/use-case/use-case.hbs'
+				// 	},
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/application/use-cases/tests/create-{{dashCase name}}.use-case.spec.ts',
+				// 		templateFile: './templates/application/use-case/use-case.spec.hbs'
+				// 	}
+				// );
+			} else if (data.option === 'mapper') {
+				// actions.push(
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/infra/mappers/tests/{{dashCase name}}.mapper.spec.ts',
+				// 		templateFile: './templates/infra/mapper/mapper.spec.hbs'
+				// 	},
+				// 	{
+				// 		type: 'add',
+				// 		path: './modules/{{dashCase name}}/infra/mappers/{{dashCase name}}.mapper.ts',
+				// 		templateFile: './templates/infra/mapper/mapper.hbs'
+				// 	}
+				// );
 			}
 			return actions;
 		}

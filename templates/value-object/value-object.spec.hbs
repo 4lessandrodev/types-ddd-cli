@@ -1,12 +1,18 @@
-import {{pascalCase name}}ValueObject from "./{{dashCase name}}.value-object"
+import {{pascalCase name}}ValueObject from "../{{dashCase name}}.value-object"
 
 describe('{{lowerCase name}}.value-object', () => {
 	it('should create a valid value object with success', () => {
 
-		const {{lowerCase name}}ValueObject = {{pascalCase name}}ValueObject.create('valid value');
+		{{#ifEquals type "string"}}
+		const validValue = "valid value";
+		{{/ifEquals}}
+		{{#ifEquals type "number"}}
+		const validValue = 1000;
+		{{/ifEquals}}
+		const {{lowerCase name}}ValueObject = {{pascalCase name}}ValueObject.create(validValue);
 		
 		expect({{lowerCase name}}ValueObject.isSuccess).toBeTruly();
 		expect({{lowerCase name}}ValueObject.getResult()).toBeDefined();
-		expect({{lowerCase name}}ValueObject.getResult().value).toBe('valid value');
+		expect({{lowerCase name}}ValueObject.getResult().value).toBe(validValue);
 	});
 });
