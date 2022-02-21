@@ -1,6 +1,6 @@
 {
   "name": "types-ddd-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "bin/index.sh",
   "license": "MIT",
   "author": "Alessandro Dev",
@@ -13,6 +13,22 @@
   "dependencies": {
     "plop": "^3.0.5"
   },
+  "keywords": [
+		"CLI",
+		"NodeJS",
+		"Business Logic",
+		"DDD",
+		"Domain Driving Design",
+		"Typescript",
+		"DDD-Utils",
+		"Base Entity",
+		"Base Aggregate",
+		"Base Value Object",
+		"Use Cases",
+		"Domain Events",
+		"Clean Architecture",
+    "Code Generator"
+	],
   "repository": {
 		"type": "git",
 		"url": "git+https://github.com/4lessandrodev/types-ddd-cli.git"
