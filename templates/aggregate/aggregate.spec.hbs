@@ -1,14 +1,15 @@
 {{#ifEquals type "string"}}
-import { CustomStringValueObject } from "types-ddd";
+import { CustomStringValueObject, DomainId } from "types-ddd";
 {{/ifEquals}}
 {{#ifEquals type "number"}}
-import { CustomNumberValueObject } from "types-ddd";
+import { CustomNumberValueObject, DomainId } from "types-ddd";
 {{/ifEquals}}
 import {{pascalCase name}}Aggregate from "../{{dashCase name}}.aggregate";
 
 describe('{{lowerCase name}}.aggregate', () => {
-	it('should create a valid aggregate', () => {
+	it('should create a {{lowerCase name}} aggregate with success', () => {
 
+		const ID = DomainId.create();
 		{{#ifEquals type "string"}}
 		const key = CustomStringValueObject.create("valid value").getResult();
 		{{/ifEquals}}
@@ -16,7 +17,7 @@ describe('{{lowerCase name}}.aggregate', () => {
 		const key = CustomNumberValueObject.create(1000).getResult();
 		{{/ifEquals}}
 
-		const aggregate = {{pascalCase name}}Aggregate.create({ key });
-		expect(aggregate.isSuccess).toBeTruly();
+		const aggregate = {{pascalCase name}}Aggregate.create({ ID, key });
+		expect(aggregate.isSuccess).toBeTruthy();
 	});
 });

@@ -1,14 +1,15 @@
 {{#ifEquals type "string"}}
-import { CustomStringValueObject } from 'types-ddd';
+import { CustomStringValueObject, DomainId } from 'types-ddd';
 {{/ifEquals}}
 {{#ifEquals type "number"}}
-import { CustomNumberValueObject } from 'types-ddd';
+import { CustomNumberValueObject, DomainId } from 'types-ddd';
 {{/ifEquals}}
 import {{pascalCase name}}Entity from '../{{dashCase name}}.entity';
 
 describe('{{lowerCase name}}.entity', () => {
-	it('should create a valid entity', () => {
+	it('should create a {{lowerCase name}} entity with success', () => {
 
+		const ID = DomainId.create();
 		{{#ifEquals type "string"}}
 		const key = CustomStringValueObject.create("valid value").getResult();
 		{{/ifEquals}}
@@ -16,7 +17,7 @@ describe('{{lowerCase name}}.entity', () => {
 		const key = CustomNumberValueObject.create(1000).getResult();
 		{{/ifEquals}}
 
-		const entity = {{pascalCase name}}Entity.create({ key });
-		expect(entity.isSuccess).toBeTruly();
+		const entity = {{pascalCase name}}Entity.create({ ID, key });
+		expect(entity.isSuccess).toBeTruthy();
 	});
 });

@@ -2,7 +2,7 @@
 import {{pascalCase name}}UseCase from '../{{dashCase name}}.use-case';
 
 describe('{{lowerCase name}}.entity', () => {
-	it('should execute use case with success', async () => {
+	it('should execute {{lowerCase name}} use case with success', async () => {
 
 		const useCase = new {{pascalCase name}}UseCase();
 		const useCaseSpy = jest.spyOn(useCase, 'execute');
@@ -16,7 +16,7 @@ describe('{{lowerCase name}}.entity', () => {
 
 		const result = await useCase.execute({ key });
 		
-		expect(result.isSuccess).toBeTruly();
+		expect(result.isSuccess).toBeTruthy();
 		expect(useCaseSpy).toHaveBeenCalledWith({ key });
 	});
 });

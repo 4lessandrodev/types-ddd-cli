@@ -32,12 +32,12 @@ export class {{pascalCase name}}Entity extends Entity<Props> {
 
 	{{#ifEquals type "string"}}
 	changeKey(key: CustomStringValueObject): void {
-		return this.props.key;
+		this.props.key = key;
 	}
 	{{/ifEquals}}
 	{{#ifEquals type "number"}}
 	changeKey(key: CustomNumberValueObject): void {
-		return this.props.key = key;
+		this.props.key = key;
 	}
 	{{/ifEquals}}
 

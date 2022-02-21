@@ -75,7 +75,7 @@ helpFn()
 	echo ""
 	echo "EXAMPLE"
 	echo "	types-ddd -g value-object -n example -t string -p src/user/domain/"
-	echo "	the command will generate an example.value-object.ts file on src/user/domain/ folder and a test file on domain/tests"
+	echo "	the command will generate an example.value-object.ts file on src/user/domain/ folder and a test file on domain/tests/"
 	echo ""
 }
 

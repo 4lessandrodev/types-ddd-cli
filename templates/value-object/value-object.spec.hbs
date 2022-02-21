@@ -1,7 +1,7 @@
 import {{pascalCase name}}ValueObject from '../{{dashCase name}}.value-object';
 
 describe('{{lowerCase name}}.value-object', () => {
-	it('should create a valid value object with success', () => {
+	it('should create a valid {{lowerCase name}} value object with success', () => {
 
 		{{#ifEquals type "string"}}
 		const validValue = "valid value";
@@ -11,7 +11,7 @@ describe('{{lowerCase name}}.value-object', () => {
 		{{/ifEquals}}
 		const {{lowerCase name}}ValueObject = {{pascalCase name}}ValueObject.create(validValue);
 		
-		expect({{lowerCase name}}ValueObject.isSuccess).toBeTruly();
+		expect({{lowerCase name}}ValueObject.isSuccess).toBeTruthy();
 		expect({{lowerCase name}}ValueObject.getResult()).toBeDefined();
 		expect({{lowerCase name}}ValueObject.getResult().value).toBe(validValue);
 	});

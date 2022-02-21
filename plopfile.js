@@ -16,6 +16,17 @@ module.exports = function (plop) {
 		actions: function (data) {
 			const actions = [];
 
+			const finishWithDash = data.destination[data.destination.length - 1] === '/';
+			const startsWithDash = data.destination[0] === '/';
+
+			if (!finishWithDash) { 
+				data.destination = data.destination + '/';
+			}
+			if (!startsWithDash) { 
+				data.destination = '/' + data.destination;
+			}
+			
+			console.log("");
 			console.table(data);
 
 			if (data.option === 'value-object') {
@@ -36,12 +47,12 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.aggregate.ts',
-						templateFile: data.origin + 'templates/entity/aggregate.hbs'
+						templateFile: data.origin + 'templates/aggregate/aggregate.hbs'
 					},
 					{
 						type: 'add',
 						path: data.destination + 'tests/{{dashCase name}}.aggregate.spec.ts',
-						templateFile: data.origin + 'templates/entity/aggregate.spec.hbs'
+						templateFile: data.origin + 'templates/aggregate/aggregate.spec.hbs'
 					}
 				);
 			} else if (data.option === 'entity') {

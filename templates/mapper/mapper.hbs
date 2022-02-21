@@ -1,5 +1,8 @@
-import { TMapper as Adapter, Result } from 'types-ddd';
+import { TMapper as Adapter, Result, Entity } from 'types-ddd';
+
 /** import your model and your aggregate */
+interface ExampleAggregate extends Entity<any>{};
+interface ExampleModel {};
 
 export class {{pascalCase name}}ModelToAggregate implements Adapter<{{pascalCase name}}Aggregate, {{pascalCase name}}Model> {
 
@@ -14,3 +17,5 @@ export class {{pascalCase name}}ModelToAggregate implements Adapter<{{pascalCase
 		return Result.ok(model);
 	};
 }
+
+export default {{pascalCase name}}ModelToAggregate;
