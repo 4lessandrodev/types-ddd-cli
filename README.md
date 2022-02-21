@@ -11,9 +11,9 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 #### Initial resources
 
 - [x] value-object
-- [ ] entity
-- [ ] aggregate
-- [ ] mapper
+- [x] entity
+- [x] aggregate
+- [x] mapper
 - [ ] domain-event
 
 
