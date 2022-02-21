@@ -1,0 +1,22 @@
+{{#ifEquals type "string"}}
+import { CustomStringValueObject } from 'types-ddd';
+{{/ifEquals}}
+{{#ifEquals type "number"}}
+import { CustomNumberValueObject } from 'types-ddd';
+{{/ifEquals}}
+import {{pascalCase name}}Entity from '../{{dashCase name}}.entity';
+
+describe('{{lowerCase name}}.entity', () => {
+	it('should create a valid entity', () => {
+
+		{{#ifEquals type "string"}}
+		const key = CustomStringValueObject.create("valid value").getResult();
+		{{/ifEquals}}
+		{{#ifEquals type "number"}}
+		const key = CustomNumberValueObject.create(1000).getResult();
+		{{/ifEquals}}
+
+		const entity = {{pascalCase name}}Entity.create({ key });
+		expect(entity.isSuccess).toBeTruly();
+	});
+});

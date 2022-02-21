@@ -1,0 +1,16 @@
+import { TMapper as Adapter, Result } from 'types-ddd';
+/** import your model and your aggregate */
+
+export class {{pascalCase name}}ModelToAggregate implements Adapter<{{pascalCase name}}Aggregate, {{pascalCase name}}Model> {
+
+	map(agg: {{pascalCase name}}Aggregate): Result<{{pascalCase name}}Model> {
+		const model: {{pascalCase name}}Model = {
+			id: agg.id.uid,
+			createdAt: agg.createdAt,
+			updatedAt: agg.updatedAt,
+			isDeleted: agg.isDeleted,
+		};
+
+		return Result.ok(model);
+	};
+}

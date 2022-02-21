@@ -1,0 +1,60 @@
+{{#ifEquals type "string"}}
+import { Entity, Result, BaseDomainEntity, CustomStringValueObject } from 'types-ddd';
+{{/ifEquals}}
+{{#ifEquals type "number"}}
+import { Entity, Result, BaseDomainEntity, CustomNumberValueObject } from 'types-ddd';
+{{/ifEquals}}
+
+interface Props extends BaseDomainEntity {
+	{{#ifEquals type "string"}}
+	key: CustomStringValueObject;
+	{{/ifEquals}}
+	{{#ifEquals type "number"}}
+	key: CustomNumberValueObject;
+	{{/ifEquals}}
+}
+
+export class {{pascalCase name}}Entity extends Entity<Props> {
+	private constructor(props: Props) {
+		super(props, {{pascalCase name}}Entity.name);
+	}
+
+	{{#ifEquals type "string"}}
+	get key(): CustomStringValueObject {
+		return this.props.key;
+	}
+	{{/ifEquals}}
+	{{#ifEquals type "number"}}
+	get key(): CustomNumberValueObject {
+		return this.props.key;
+	}
+	{{/ifEquals}}
+
+	{{#ifEquals type "string"}}
+	changeKey(key: CustomStringValueObject): void {
+		return this.props.key;
+	}
+	{{/ifEquals}}
+	{{#ifEquals type "number"}}
+	changeKey(key: CustomNumberValueObject): void {
+		return this.props.key = key;
+	}
+	{{/ifEquals}}
+
+	public static isValidProps(props: Props): boolean {
+		// your logic to validate value here
+		return props.key !== undefined;
+	}
+
+	public static create(props: Props): Result<{{pascalCase name}}Entity> {
+		const isValidProps = {{pascalCase name}}Entity.isValidProps(props);
+
+		if (!isValidProps) {
+			return Result.fail('your error message here');
+		}
+		
+		return Result.ok(new {{pascalCase name}}Entity(props));
+	}
+}
+
+export default {{pascalCase name }}Entity;

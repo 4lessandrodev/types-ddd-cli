@@ -3,7 +3,7 @@
 current_path=$(pwd);
 npm_path=$(npm list -g | awk 'NR==1')
 operation=$1;
-resources="value-object, entity, aggregate or mapper";
+resources="value-object, entity, aggregate, use-case or mapper";
 available_types="[string OR number]";
 lib_name=types-ddd-cli;
 lib_command=types-ddd;
@@ -24,7 +24,7 @@ validateArgs()
 			exit 1;
 		fi
 	else
-		if [ "$resource" != "value-object" ] && [ "$resource" != "entity" ] && [ "$resource" != "aggregate" ] && [ "$resource" != "mapper" ]; then
+		if [ "$resource" != "value-object" ] && [ "$resource" != "entity" ] && [ "$resource" != "aggregate" ] && [ "$resource" != "mapper" ] && [ "$resource" != "use-case" ]; then
 			echo "ERROR: invalid resource. choose: $resources";
 			exit 1;
 		fi

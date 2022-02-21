@@ -1,0 +1,19 @@
+import { IUseCase, Result, Logger, DomainId } from 'types-ddd';
+import {{pascalCase name}}Dto from './{{dashCase name}}.dto';
+
+export class {{pascalCase name}}UseCase implements IUseCase<{{pascalCase name}}Dto, Result<void, string>>{
+	/** constructor(private readonly {{lowerCase name}}Repo: {{pascalCase name}}Repo){} */
+	
+	async execute(_dto: {{pascalCase name}}Dto): Promise<Result<void, string>> {
+		try {
+
+			return Result.success();
+
+		} catch (error: any) {
+			Logger.error(error.message);
+			return Result.fail('Internal Server Error on Create{{pascalCase name}}UseCase', 'INTERNAL_SERVER_ERROR');
+		}
+	}
+}
+
+export default {{pascalCase name}}UseCase;

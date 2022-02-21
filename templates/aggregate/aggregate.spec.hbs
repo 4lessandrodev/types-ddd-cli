@@ -1,0 +1,22 @@
+{{#ifEquals type "string"}}
+import { CustomStringValueObject } from "types-ddd";
+{{/ifEquals}}
+{{#ifEquals type "number"}}
+import { CustomNumberValueObject } from "types-ddd";
+{{/ifEquals}}
+import {{pascalCase name}}Aggregate from "../{{dashCase name}}.aggregate";
+
+describe('{{lowerCase name}}.aggregate', () => {
+	it('should create a valid aggregate', () => {
+
+		{{#ifEquals type "string"}}
+		const key = CustomStringValueObject.create("valid value").getResult();
+		{{/ifEquals}}
+		{{#ifEquals type "number"}}
+		const key = CustomNumberValueObject.create(1000).getResult();
+		{{/ifEquals}}
+
+		const aggregate = {{pascalCase name}}Aggregate.create({ key });
+		expect(aggregate.isSuccess).toBeTruly();
+	});
+});

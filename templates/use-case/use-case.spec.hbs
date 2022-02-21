@@ -1,0 +1,22 @@
+
+import {{pascalCase name}}UseCase from '../{{dashCase name}}.use-case';
+
+describe('{{lowerCase name}}.entity', () => {
+	it('should execute use case with success', async () => {
+
+		const useCase = new {{pascalCase name}}UseCase();
+		const useCaseSpy = jest.spyOn(useCase, 'execute');
+
+		{{#ifEquals type "string"}}
+		const key = "valid value";
+		{{/ifEquals}}
+		{{#ifEquals type "number"}}
+		const key = 1000;
+		{{/ifEquals}}
+
+		const result = await useCase.execute({ key });
+		
+		expect(result.isSuccess).toBeTruly();
+		expect(useCaseSpy).toHaveBeenCalledWith({ key });
+	});
+});
