@@ -10,7 +10,7 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 
 #### Initial resources
 
-- [ x ] value-object
+- [x] value-object
 - [ ] entity
 - [ ] aggregate
 - [ ] mapper
