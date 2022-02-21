@@ -3,10 +3,22 @@
   "version": "0.0.1",
   "main": "bin/index.sh",
   "license": "MIT",
+  "author": "Alessandro Dev",
+  "engines": {
+		"node": ">=12"
+	},
   "bin": {
     "types-ddd": "./bin/index.sh"
   },
   "dependencies": {
     "plop": "^3.0.5"
-  }
+  },
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/4lessandrodev/types-ddd-cli.git"
+	},
+	"bugs": {
+		"url": "https://github.com/4lessandrodev/types-ddd-cli/issues"
+	},
+	"homepage": "git+https://github.com/4lessandrodev/types-ddd-cli.git/"
 }
