@@ -45,7 +45,7 @@ OR
 #### Generate
 
 ```sh
-	$ types-ddd -g value-object -n example -t string -path src/domain/
+	$ types-ddd -g value-object -n example -t string -p src/domain/
 ```
 
 OR 
