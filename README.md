@@ -10,7 +10,7 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 
 #### Initial resources
 
-- [ x ] value-object
+- [x] value-object
 - [ ] entity
 - [ ] aggregate
 - [ ] mapper
@@ -45,7 +45,7 @@ OR
 #### Generate
 
 ```sh
-	$ types-ddd -g value-object -n example -t string -path src/domain/
+	$ types-ddd -g value-object -n example -t string -p src/domain/
 ```
 
 OR 
