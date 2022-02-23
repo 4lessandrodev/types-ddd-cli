@@ -12,20 +12,32 @@ module.exports = function (plop) {
 			{ type: "input", name: "type" },
 			{ type: "input", name: "destination" },
 			{ type: "input", name: "origin" },
+			{ type: "input", name: "system" },
 		],
 		actions: function (data) {
 			const actions = [];
 
-			const finishWithDash = data.destination[data.destination.length - 1] === '/';
-			const startsWithDash = data.destination[0] === '/';
-
-			if (!finishWithDash) { 
-				data.destination = data.destination + '/';
-			}
-			if (!startsWithDash) { 
-				data.destination = '/' + data.destination;
-			}
+			const separator = '/';
+			const destFinishWithDash = data.destination.slice(data.destination.length - 1) === separator;
+			const origFinishWithDash = data.origin.slice(data.origin.length - 1) === separator;
+			const destStartsWithDash = data.destination[0] === separator;
+			const origStartsWithDash = data.origin[0] === separator;
+			const isWindows = data.system === 'windows';
 			
+
+			if (!destFinishWithDash) { 
+				data.destination = data.destination + separator;
+			}
+			if (!destStartsWithDash && !isWindows) { 
+				data.destination = separator + data.destination;
+			}
+			if (!origFinishWithDash) { 
+				data.origin = data.origin + separator;
+			}
+			if (!origStartsWithDash && !isWindows) { 
+				data.origin = separator + data.origin;
+			}
+
 			console.log("");
 			console.table(data);
 
@@ -34,12 +46,12 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.value-object.ts',
-						templateFile: data.origin + 'templates/value-object/value-object.hbs'
+						templateFile: data.origin + `templates${separator}value-object${separator}value-object.hbs`
 					},
 					{
 						type: 'add',
-						path: data.destination + 'tests/{{dashCase name}}.value-object.spec.ts',
-						templateFile: data.origin + 'templates/value-object/value-object.spec.hbs'
+						path: data.destination + `tests${separator}{{dashCase name}}.value-object.spec.ts`,
+						templateFile: data.origin + `templates${separator}value-object${separator}value-object.spec.hbs`
 					}
 				);
 			} else if (data.option === 'aggregate') {
@@ -47,12 +59,12 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.aggregate.ts',
-						templateFile: data.origin + 'templates/aggregate/aggregate.hbs'
+						templateFile: data.origin + `templates${separator}aggregate${separator}aggregate.hbs`
 					},
 					{
 						type: 'add',
-						path: data.destination + 'tests/{{dashCase name}}.aggregate.spec.ts',
-						templateFile: data.origin + 'templates/aggregate/aggregate.spec.hbs'
+						path: data.destination + `tests${separator}{{dashCase name}}.aggregate.spec.ts`,
+						templateFile: data.origin + `templates${separator}aggregate${separator}aggregate.spec.hbs`
 					}
 				);
 			} else if (data.option === 'entity') {
@@ -60,12 +72,12 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.entity.ts',
-						templateFile: data.origin + 'templates/entity/entity.hbs'
+						templateFile: data.origin + `templates${separator}entity${separator}entity.hbs`
 					},
 					{
 						type: 'add',
-						path: data.destination + 'tests/{{dashCase name}}.entity.spec.ts',
-						templateFile: data.origin + 'templates/entity/entity.spec.hbs'
+						path: data.destination + `tests${separator}{{dashCase name}}.entity.spec.ts`,
+						templateFile: data.origin + `templates${separator}entity${separator}entity.spec.hbs`
 					}
 				);
 			} else if (data.option === 'use-case') {
@@ -73,17 +85,17 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.use-case.ts',
-						templateFile: data.origin + 'templates/use-case/use-case.hbs'
+						templateFile: data.origin + `templates${separator}use-case${separator}use-case.hbs`
 					},
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.dto.ts',
-						templateFile: data.origin + 'templates/use-case/dto.hbs'
+						templateFile: data.origin + `templates${separator}use-case${separator}dto.hbs`
 					},
 					{
 						type: 'add',
-						path: data.destination + 'tests/{{dashCase name}}.use-case.spec.ts',
-						templateFile: data.origin + 'templates/use-case/use-case.spec.hbs'
+						path: data.destination + `tests${separator}{{dashCase name}}.use-case.spec.ts`,
+						templateFile: data.origin + `templates${separator}use-case${separator}use-case.spec.hbs`
 					}
 				);
 			} else if (data.option === 'mapper') {
@@ -91,7 +103,7 @@ module.exports = function (plop) {
 					{
 						type: 'add',
 						path: data.destination + '{{dashCase name}}.mapper.ts',
-						templateFile: data.origin + 'templates/mapper/mapper.hbs'
+						templateFile: data.origin + `templates${separator}mapper${separator}mapper.hbs`
 					},
 				);
 			}

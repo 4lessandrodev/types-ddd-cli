@@ -4,7 +4,7 @@
 
 Requires: Linux, WSL or Git Bash, npm and nodejs
 
-### Example how it will works
+### Example how it works
 
 A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A domain driven design library.
 
@@ -22,7 +22,9 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 - ``` -g: generate ```
 - ``` -n: name ```
 - ``` -t: type ```
-- ``` -p: path (destination)```
+- ``` -p: path (destination) ```
+- ``` -h: help center ```
+- ``` --help: help center ```
 
 #### Installation 
 
