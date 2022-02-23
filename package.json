@@ -1,6 +1,6 @@
 {
   "name": "types-ddd-cli",
-  "version": "0.1.0-beta",
+  "version": "0.1.1-beta",
   "main": "bin/index.sh",
   "license": "MIT",
   "author": "Alessandro Dev",
