@@ -31,6 +31,9 @@ module.exports = function (plop) {
 				data.destination = '/' + data.destination;
 			}
 			if (isWindows) {
+				if (startsWithDash) {
+					data.destination = data.destination.slice(1);
+				}
 				separator = '\\';
 				initialSeparator = separator;
 			}
