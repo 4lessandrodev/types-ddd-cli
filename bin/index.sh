@@ -1,14 +1,29 @@
 #! /bin/bash
 
 current_path=$(pwd);
-npm_path=$(npm list -g | awk 'NR==1')
+npm_path=$(npm list -g | awk 'NR==1');
 operation=$1;
 resources="value-object, entity, aggregate, use-case or mapper";
 available_types="[string OR number]";
 lib_name=types-ddd-cli;
 lib_command=types-ddd;
-lib_path=$npm_path/node_modules/$lib_name
-binaries_path=$npm_path/node_modules/$lib_name/node_modules
+lib_path=$npm_path/node_modules/$lib_name;
+binaries_path=$npm_path/node_modules/$lib_name/node_modules;
+platform_os=linux
+
+chek_plataform()
+{
+	platform_os="$OSTYPE";
+	if [[ "$platform_os" =~ ^msys ]]; then
+		platform_os=windows
+		# support for windows - git bash
+		path=${path//\//\\\\}
+		lib_path=${lib_path//\//\\\\}
+		binaries_path=${binaries_path//\//\\\\}
+	else
+		platform_os=linux
+	fi
+}
 
 validateArgs()
 {
@@ -33,7 +48,11 @@ validateArgs()
 
 callPlop()
 {
-	node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path "$lib_path/"
+	if [[ "$platform_os" == "windows" ]]; then
+		node $binaries_path\\plop\\bin\\plop.js --plopfile $lib_path\\plopfile.js $name $resource $type $path $lib_path $platform_os
+	else
+		node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path $lib_path $platform_os
+	fi
 }
 
 applyEmptyAttribures()
@@ -42,7 +61,7 @@ applyEmptyAttribures()
 		type="string";
 	fi
 	if [ ${#path} -eq 0 ]; then
-		path=$current_path/
+		path=$current_path
 	fi
 }
 
@@ -103,6 +122,8 @@ then
 	validateArgs;
 	# apply default values
 	applyEmptyAttribures;
+	# normalize platform path
+	chek_plataform
 	# call generate files
 	callPlop;
 	exit 0;
