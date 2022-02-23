@@ -51,7 +51,7 @@ validateArgs()
 
 callPlop()
 {
-	node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path $lib_path
+	node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path $lib_path $platform_os
 }
 
 applyEmptyAttribures()

@@ -12,6 +12,7 @@ module.exports = function (plop) {
 			{ type: "input", name: "type" },
 			{ type: "input", name: "destination" },
 			{ type: "input", name: "origin" },
+			{ type: "input", name: "system" },
 		],
 		actions: function (data) {
 			const actions = [];
@@ -21,18 +22,19 @@ module.exports = function (plop) {
 			const origFinishWithDash = data.origin.slice(data.origin.length - 1) === separator;
 			const destStartsWithDash = data.destination[0] === separator;
 			const origStartsWithDash = data.origin[0] === separator;
+			const isWindows = data.system === 'windows';
 			
 
 			if (!destFinishWithDash) { 
 				data.destination = data.destination + separator;
 			}
-			if (!destStartsWithDash) { 
+			if (!destStartsWithDash && !isWindows) { 
 				data.destination = separator + data.destination;
 			}
 			if (!origFinishWithDash) { 
 				data.origin = data.origin + separator;
 			}
-			if (!origStartsWithDash) { 
+			if (!origStartsWithDash && !isWindows) { 
 				data.origin = separator + data.origin;
 			}
 
