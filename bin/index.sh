@@ -1,7 +1,7 @@
 #! /bin/bash
 
 current_path=$(pwd);
-npm_path=$(npm list -g | awk 'NR==1');
+npm_path=$(npm list -g | awk 'NR==1' | sed -e "s/://");
 operation=$1;
 resources="value-object, entity, aggregate, use-case or mapper";
 available_types="[string OR number]";
@@ -17,9 +17,12 @@ chek_plataform()
 	if [[ "$platform_os" =~ ^msys ]]; then
 		platform_os=windows
 		# support for windows - git bash
-		path=${path//\//\\\\}
-		lib_path=${lib_path//\//\\\\}
-		binaries_path=${binaries_path//\//\\\\}
+		path=$(echo $path | sed -e 's/\\/\//g')
+		disc_letter=${lib_path:0:1}
+		disc_letter_lower="${disc_letter,,}"
+		lib_path=/$(echo $lib_path | sed -e 's/\\/\//g' | sed s/./$disc_letter_lower/1)
+		binaries_path=/$(echo $binaries_path | sed -e 's/\\/\//g' | sed s/./$disc_letter_lower/1)
+		npm_path="/$npm_path"
 	else
 		platform_os=linux
 	fi
@@ -48,11 +51,7 @@ validateArgs()
 
 callPlop()
 {
-	if [[ "$platform_os" == "windows" ]]; then
-		node $binaries_path\\plop\\bin\\plop.js --plopfile $lib_path\\plopfile.js $name $resource $type $path $lib_path $platform_os
-	else
-		node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path $lib_path $platform_os
-	fi
+	node $binaries_path/plop/bin/plop.js --plopfile $lib_path/plopfile.js $name $resource $type $path $lib_path
 }
 
 applyEmptyAttribures()
