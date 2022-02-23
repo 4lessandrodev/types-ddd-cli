@@ -2,7 +2,7 @@
 
 ## Build a cli to auto generate domain files
 
-Requires: Linux or WSL, npm and nodejs
+Requires: Linux, WSL or Git Bash, npm and nodejs
 
 ### Example how it will works
 
@@ -25,6 +25,8 @@ A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A 
 - ``` -p: path (destination)```
 
 #### Installation 
+
+Install globally
 
 ```sh
 	$ npm i types-ddd-cli -g
