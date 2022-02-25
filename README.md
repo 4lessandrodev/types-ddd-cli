@@ -1,6 +1,6 @@
 # Types-ddd cli
 
-## Build a cli to auto generate domain files
+## cli to auto generate domain files
 
 Requires: Linux, WSL or Git Bash, npm and nodejs
 
