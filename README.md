@@ -1,59 +1,44 @@
-# Types-ddd cli
+# Types-ddd CLI
 
-## Build a cli to auto generate domain files
+A command-line interface to generate resources based in templates
 
-Requires: Linux, WSL or Git Bash, npm and nodejs
+![](docs/doc.png)
 
-### Example how it works
+---
+## How to install
 
-A cli to works with [types-ddd](https://www.npmjs.com/package/types-ddd) lib. A domain driven design library.
-
-#### Initial resources
-
-- [x] value-object
-- [x] entity
-- [x] aggregate
-- [x] mapper
-- [ ] domain-event
-
-
-### Summary
-
-- ``` -g: generate ```
-- ``` -n: name ```
-- ``` -t: type ```
-- ``` -p: path (destination) ```
-- ``` -h: help center ```
-- ``` --help: help center ```
-
-#### Installation 
-
-Install globally
+Installing globally
 
 ```sh
-	$ npm i types-ddd-cli -g
+
+$ npm install -g types-ddd-cli
+
 ```
 
-#### Help
+Installing in project using yarn
 
 ```sh
-	$ types-ddd --help
+
+$ yarn add types-ddd-cli -D
+
 ```
 
-OR
+## How to use
+
+See help center 
 
 ```sh
-	$ types-ddd -h
+
+$ types-ddd --help
+
 ```
 
-#### Generate
+Basic commands
 
 ```sh
-	$ types-ddd -g value-object -n example -t string -p src/domain/
-```
 
-OR 
+# types-ddd create [resource] [options]
 
-```sh
-	$ types-ddd -g value-object -n example
+$ types-ddd create rest-api --name my-api --path ./my-folder
+
 ```
