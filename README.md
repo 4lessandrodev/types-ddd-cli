@@ -2,7 +2,7 @@
 
 A command-line interface to generate resources based in templates
 
-![](docs/doc.png)
+![](docs/print.png)
 
 ---
 ## How to install
