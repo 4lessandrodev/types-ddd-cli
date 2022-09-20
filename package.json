@@ -1,6 +1,6 @@
 {
   "name": "types-ddd-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "bin/ddd.js",
   "license": "MIT",
   "author": "Alessandro Dev",
