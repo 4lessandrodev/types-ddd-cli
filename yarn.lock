@@ -661,9 +661,9 @@
     pretty-format "^28.0.0"
 
 "@types/module-alias@^2.0.1":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/module-alias/-/module-alias-2.0.2.tgz#87417a2ceea168dc8f0b28a5c55e6683371871a6"
-  integrity sha512-Oeo5NEjAceFgN8OzGiLXPswgv2GBmrDGuTnLS0sQ8g4Mq5sB5c97Hu5B+n9Gu/j+5Y+oUb4TSawHXkZ8MENGyw==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/module-alias/-/module-alias-2.0.3.tgz#c4b69db7d7e8d8063b8e6a92451373f102605c5d"
+  integrity sha512-P4nKOHbLwvzpPWA5rqJXEAvkIePPb4fNMaEzVU3qZp53NEg2buF9KaudA7BfduUd0b/M1+cM9w050WJ+sDHktw==
 
 "@types/node@*", "@types/node@^20.1.4":
   version "20.8.10"
