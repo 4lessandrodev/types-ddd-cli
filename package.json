@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/jest": "^28.1.8",
     "@types/module-alias": "^2.0.1",
-    "@types/node": "^20.1.4",
+    "@types/node": "^22.5.2",
     "@types/tar": "^6.1.2",
     "jest": "28",
     "ts-jest": "^28.0.8",
